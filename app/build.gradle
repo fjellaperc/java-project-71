@@ -16,7 +16,6 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter'
     implementation 'info.picocli:picocli:4.7.5'
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.15.2'
-
 }
 
 compileJava {
@@ -25,6 +24,10 @@ compileJava {
 
 application {
     mainClass = 'hexlet.code.App'
+}
+
+tasks.named('test', Test) {
+    useJUnitPlatform()
 }
 
 test {
