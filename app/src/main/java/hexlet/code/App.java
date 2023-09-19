@@ -12,23 +12,25 @@ import java.util.concurrent.Callable;
 public class App implements Callable<String> {
 
     @CommandLine.Parameters(index = "0", description = "path to first file")
-    private File filepath1 = new File("/app/file1.json");
+    private String filepath1;
     @CommandLine.Parameters(index = "1", description = "path to second file")
-    private File filepath2 = new File("/app/file2.json");
+    private String filepath2;
     @CommandLine.Option(names = {"-f", "--format"}, description = "output format [default: stylish]")
     private String format = "stylish";
 
     @Override
     public String call() throws Exception {
+        File file1 = new File(filepath1).getAbsoluteFile();
+        File file2 = new File(filepath2).getAbsoluteFile();
 
-        if (!Files.exists(filepath1.toPath())) {
-            throw new Exception("File " + filepath1.getName() + " " + "does not exist!!!");
+        if (!Files.exists(file1.toPath())) {
+            throw new Exception("File " + file1.getName() + " " + "does not exist!!!");
         }
 
-        if (!Files.exists(filepath1.toPath())) {
-            throw new Exception("File " + filepath2.getName() + " " + "does not exist!!!");
+        if (!Files.exists(file2.toPath())) {
+            throw new Exception("File " + file2.getName() + " " + "does not exist!!!");
         }
-        return Differ.findDifferent(filepath1, filepath2);
+        return Differ.findDifferent(file1, file2);
     }
 
     public static void main(String[] args) {

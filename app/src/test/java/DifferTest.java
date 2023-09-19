@@ -11,10 +11,15 @@ class DifferTest {
     File file2;
     @BeforeEach
     public void setUp() {
-        file1 = new File("/home/fjellaperc/HexletProjects/java-project-71/app/file1.json");
-        file2 = new File("/home/fjellaperc/HexletProjects/java-project-71/app/file2.json");
+        file1 = new File("/home/fjellaperc/java-project-71/app/src/test/resources/file1.json");
+        file2 = new File("/home/fjellaperc/java-project-71/app/src/test/resources/file2.json");
     }
 
+    @Test
+    public void existFile() {
+        Assertions.assertTrue(file1.exists());
+        Assertions.assertTrue(file2.exists());
+    }
     @Test
     public void findDifferentsTest() throws IOException {
         String expected1 = """
