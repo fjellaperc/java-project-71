@@ -11,16 +11,16 @@ import java.util.concurrent.Callable;
 
 public class App implements Callable<String> {
     @CommandLine.Parameters(index = "0", description = "path to first file")
-    private String filepath1;
+    private File file1;
     @CommandLine.Parameters(index = "1", description = "path to second file")
-    private String filepath2;
+    private File file2;
     @CommandLine.Option(names = {"-f", "--format"}, description = "output format [default: stylish]")
     private String format;
 
     @Override
     public String call() throws Exception {
-        File file1 = new File(filepath1).getAbsoluteFile();
-        File file2 = new File(filepath2).getAbsoluteFile();
+        String filepath1 = file1.getAbsolutePath();
+        String filepath2 = file2.getAbsolutePath();
         if (!file1.exists()) {
             throw new Exception("File " + file1 + " does not exist!");
         }
@@ -31,7 +31,7 @@ public class App implements Callable<String> {
             format = "stylish";
         }
 
-        return Differ.generate(file1, file2, format);
+        return Differ.generate(filepath1, filepath2, format);
     }
 
     public static void main(String[] args) {

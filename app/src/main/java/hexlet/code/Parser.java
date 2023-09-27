@@ -10,13 +10,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Parser {
-    public static Map<String, Object> parserData(File file) throws IOException {
-        String emptyFile = Files.readString(file.toPath());
+    public static Map<String, Object> parserData(String filepath) throws IOException {
+        String emptyFile = Files.readString(new File(filepath).toPath());
         if (emptyFile.isEmpty()) {
             return new HashMap<>();
         }
         ObjectMapper mapper = new ObjectMapper();
-        return mapper.readValue(file, new TypeReference<>() {
+        return mapper.readValue(new File(filepath), new TypeReference<>() {
         });
     }
 }
