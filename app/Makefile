@@ -18,7 +18,6 @@ run-json-out:
 		./build/install/app/bin/app -f stylish Flatfile1.json Flatfile2.json
 run-help:
 		./build/install/app/bin/app -h
-
 build:
-		./gradlew clean build
+		gradle clean build
 .PHONY: build
