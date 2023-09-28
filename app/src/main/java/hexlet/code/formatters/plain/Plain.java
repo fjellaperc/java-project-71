@@ -18,32 +18,31 @@ public class Plain {
         String result = "";
         for (String key : keys) {
             if (parsMap1.containsKey(key) && !parsMap2.containsKey(key)) { // В первой есть во 2 нет
-                result = result + " Property '" + key + "' was removed\n";
+                result = result + "Property '" + key + "' was removed\n";
             } else if (!parsMap1.containsKey(key) && parsMap2.containsKey(key)) { // Во второй есть в 1 нет
                 if (!classes.contains(parsMap2.get(key).getClass().toString()) //Проверка на примитивность
                         && parsMap2.get(key) != null) {
-                    result = result + " Property '" + key + "' was added with value: [complex value]\n";
+                    result = result + "Property '" + key + "' was added with value: [complex value]\n";
                 } else {
-                    result = result + " Property '" + key + "' was added with value: '" + parsMap2.get(key) + "'\n";
+                    result = result + "Property '" + key + "' was added with value: '" + parsMap2.get(key) + "'\n";
                 }
             } else {
                 if (!Objects.equals(parsMap1.get(key), parsMap2.get(key))) { //Значения не равны
                     if (parsMap1.get(key) != null  //Проверка на примитивность
                             && !classes.contains(parsMap1.get(key).getClass().toString())) {
-                        result = result + " Property '" + key + "' was updated. From [complex value]";
+                        result = result + "Property '" + key + "' was updated. From [complex value]";
                     } else {
-                        result = result + " Property '" + key + "' was updated. From " + parsMap1.get(key);
+                        result = result + "Property '" + key + "' was updated. From " + parsMap1.get(key);
                     }
                     if (parsMap2.get(key) != null  //Проверка на примитивность
                             && !classes.contains(parsMap2.get(key).getClass().toString())) {
                         result = result + " to [complex value]\n";
                     } else {
-                        result = result + " to " + parsMap2.get(key) + "\n";
+                        result = result + " to '" + parsMap2.get(key) + "'\n";
                     }
                 }
             }
         }
-        System.out.println(result);
-        return result;
+        return result.substring(0, result.length() - 1);
     }
 }
