@@ -9,4 +9,8 @@ public class Differ {
         Map<String, Object> parsMap2 = Parser.parserData(filepath2);
         return Formatter.represent(parsMap1, parsMap2, formatName);
     }
+    public static String generate(String filepath1, String filepath2) throws Exception {
+        return generate(filepath1, filepath2, "stylish");
+    }
 }
+
