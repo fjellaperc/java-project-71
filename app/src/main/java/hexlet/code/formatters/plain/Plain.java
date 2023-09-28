@@ -15,7 +15,7 @@ public class Plain {
         commonMap.putAll(parsMap1);
         commonMap.putAll(parsMap2);
         List<String> keys = commonMap.keySet().stream().sorted().toList();
-        String result = "{\n";
+        String result = "";
         for (String key : keys) {
             if (parsMap1.containsKey(key) && !parsMap2.containsKey(key)) { // В первой есть во 2 нет
                 result = result + " Property '" + key + "' was removed\n";
@@ -43,7 +43,6 @@ public class Plain {
                 }
             }
         }
-        result = result + "}";
         System.out.println(result);
         return result;
     }
