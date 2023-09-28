@@ -1,5 +1,7 @@
 package hexlet.code.formatters.json;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreType;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -8,7 +10,7 @@ import java.util.Map;
 import java.util.Objects;
 
 public class Json {
-    public static Map<String, Object> parserJson(Map<String, Object> parsMap1,
+    public static String parserJson(Map<String, Object> parsMap1,
                                                  Map<String, Object> parsMap2) throws IOException {
         Map<String, Object> commonMap = new HashMap<>();
         commonMap.putAll(parsMap1);
@@ -32,6 +34,7 @@ public class Json {
         }
 //        ObjectMapper mapper = new ObjectMapper();
 //        mapper.writeValue(new File("/home/fjellaperc/test.json"), result);
-        return result;
+        System.out.println(result.toString());
+        return result.toString();
     }
 }

@@ -14,8 +14,10 @@ Structure-json-plain:
 		./build/install/app/bin/app -f plain DataStructure1.json DataStructure2.json
 Structure-yaml-plain:
 		./build/install/app/bin/app -f plain DataStructure1.json DataStructure2.json
-run-json-out:
-		./build/install/app/bin/app -f stylish Flatfile1.json Flatfile2.json
+run-Flatjson-out:
+		./build/install/app/bin/app -f json Flatfile1.json Flatfile2.json
+run-Structurejson-out:
+		./build/install/app/bin/app -f json DataStructure1.json DataStructure2.json
 run-help:
 		./build/install/app/bin/app -h
 build:

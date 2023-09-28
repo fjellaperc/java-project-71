@@ -30,6 +30,9 @@ public class App implements Callable<String> {
         if (format == null) {
             format = "stylish";
         }
+/*        if (format.equals("json")) {
+            return Differ.generateJSON(filepath1, filepath2);
+        }*/
 
         return Differ.generate(filepath1, filepath2, format);
     }
