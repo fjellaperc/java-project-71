@@ -14,15 +14,15 @@ public class Stylish {
         String result = "{\n";
         for (String key : keys) {
             if (parsMap1.containsKey(key) && !parsMap2.containsKey(key)) { // В первой есть во 2 нет
-                result = result + "   - " + key + ": " + parsMap1.get(key) + "\n";
+                result = result + "  - " + key + ": " + parsMap1.get(key) + "\n";
             } else if (!parsMap1.containsKey(key) && parsMap2.containsKey(key)) { // Во второй есть в 1 нет
-                result = result + "   + " + key + ": " + parsMap2.get(key) + "\n";
+                result = result + "  + " + key + ": " + parsMap2.get(key) + "\n";
             } else {
                 if (Objects.equals(parsMap1.get(key), parsMap2.get(key))) { //Ключи есть и значения равны
-                    result = result + "     " + key + ": " + parsMap1.get(key) + "\n";
+                    result = result + "    " + key + ": " + parsMap1.get(key) + "\n";
                 } else { //Значения не равны
-                    result = result + "   - " + key + ": " + parsMap1.get(key) + "\n";
-                    result = result + "   + " + key + ": " + parsMap2.get(key) + "\n";
+                    result = result + "  - " + key + ": " + parsMap1.get(key) + "\n";
+                    result = result + "  + " + key + ": " + parsMap2.get(key) + "\n";
                 }
             }
         }
