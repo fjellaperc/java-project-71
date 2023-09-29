@@ -30,7 +30,7 @@ public class Stylish {
             }
         }
         result = result + "}";
-        System.out.println("RESULT " + result);
+        System.out.println(result);
         return result;
     }
 }
