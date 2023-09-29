@@ -8,7 +8,7 @@ import java.util.Objects;
 
 public class Plain {
     public static String representPlainStyle(Map<String, Object> parsMap1, Map<String, Object> parsMap2) {
-        final List<String> CLASSES = List.of("class java.lang.String", "class java.lang.Boolean",
+        final List<String> classes = List.of("class java.lang.String", "class java.lang.Boolean",
                 "class java.lang.Integer", "class java.lang.Character", "class java.lang.Long",
                 "class java.lang.Float", "class java.lang.Double");
         if (parsMap1.isEmpty() && parsMap2.isEmpty()) {
@@ -23,7 +23,7 @@ public class Plain {
             if (parsMap1.containsKey(key) && !parsMap2.containsKey(key)) { // В первой есть во 2 нет
                 result = result + "Property '" + key + "' was removed\n";
             } else if (!parsMap1.containsKey(key) && parsMap2.containsKey(key)) { // Во второй есть в 1 нет
-                if (!CLASSES.contains(parsMap2.get(key).getClass().toString()) //Проверка на примитивность
+                if (!classes.contains(parsMap2.get(key).getClass().toString()) //Проверка на примитивность
                         && parsMap2.get(key) != null) {
                     result = result + "Property '" + key + "' was added with value: [complex value]\n";
                 } else {
@@ -37,7 +37,7 @@ public class Plain {
             } else {
                 if (!Objects.equals(parsMap1.get(key), parsMap2.get(key))) { //Значения не равны
                     if (parsMap1.get(key) != null  //Проверка на примитивность
-                            && !CLASSES.contains(parsMap1.get(key).getClass().toString())) {
+                            && !classes.contains(parsMap1.get(key).getClass().toString())) {
                         result = result + "Property '" + key + "' was updated. From [complex value]";
                     } else {
                         if (parsMap1.get(key) instanceof String) { //Если значение строка то ставми кавычки ' '
@@ -47,7 +47,7 @@ public class Plain {
                         }
                     }
                     if (parsMap2.get(key) != null  //Проверка на примитивность
-                            && !CLASSES.contains(parsMap2.get(key).getClass().toString())) {
+                            && !classes.contains(parsMap2.get(key).getClass().toString())) {
                         result = result + " to [complex value]\n";
                     } else {
                         if (parsMap2.get(key) instanceof String) {
