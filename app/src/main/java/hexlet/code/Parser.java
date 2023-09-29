@@ -16,9 +16,7 @@ public class Parser {
         if (emptyFile.isEmpty()) {
             return new HashMap<>();
         }
-        System.out.println("JSON FILE " + filepath.contains("json"));
-        System.out.println("YAML FILE " + filepath.contains("yaml"));
-        System.out.println("YAML FILE " + filepath.contains("yml"));
+
         if (filepath.contains("json")) {
             ObjectMapper mapper = new ObjectMapper();
             return mapper.readValue(new File(filepath), new TypeReference<>() {

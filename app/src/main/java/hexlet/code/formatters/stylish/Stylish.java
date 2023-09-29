@@ -10,11 +10,13 @@ public class Stylish {
         if (parsMap1.isEmpty() && parsMap2.isEmpty()) {
             return "";
         }
+
         Map<String, Object> commonMap = new HashMap<>();
         commonMap.putAll(parsMap1);
         commonMap.putAll(parsMap2);
         List<String> keys = commonMap.keySet().stream().sorted().toList();
         String result = "{\n";
+
         for (String key : keys) {
             if (parsMap1.containsKey(key) && !parsMap2.containsKey(key)) { // В первой есть во 2 нет
                 result = result + "  - " + key + ": " + parsMap1.get(key) + "\n";
@@ -30,7 +32,6 @@ public class Stylish {
             }
         }
         result = result + "}";
-        System.out.println(result);
         return result;
     }
 }
