@@ -7,6 +7,8 @@ import java.util.Objects;
 
 public class Stylish {
     public static String stylishFormmater(Map<String, Object> parsMap1, Map<String, Object> parsMap2) {
+        System.out.println(parsMap1);
+        System.out.println(parsMap2);
         if (parsMap1.isEmpty() && parsMap2.isEmpty()) {
             return "";
         }

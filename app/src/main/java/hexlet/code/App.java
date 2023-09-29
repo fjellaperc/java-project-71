@@ -32,10 +32,8 @@ public class App implements Callable<String> {
         if (format == null) {
             format = "stylish";
         }
-
         return Differ.generate(filepath1, filepath2, format);
     }
-
     public static void main(String[] args) {
         int cmd = new CommandLine(new App()).execute(args);
         System.exit(cmd);
