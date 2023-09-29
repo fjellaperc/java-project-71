@@ -14,7 +14,6 @@ public class Parser {
     public static Map<String, Object> parserData(String filepath) throws Exception {
         String emptyFile = Files.readString(new File(filepath).toPath());
         if (emptyFile.isEmpty()) {
-            System.out.println("XYI");
             return new HashMap<>();
         }
         if (filepath.contains("json")) {

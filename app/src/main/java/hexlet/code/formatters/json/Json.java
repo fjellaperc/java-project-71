@@ -12,11 +12,11 @@ import java.util.Objects;
 public class Json {
     public static String parserJson(Map<String, Object> parsMap1,
                                                  Map<String, Object> parsMap2) throws IOException {
-        if (parsMap1.isEmpty()) { //Если обе мапы пустые возвращаем пустую строку
+/*        if (parsMap1.isEmpty()) { //Если обе мапы пустые возвращаем пустую строку
             if (parsMap2.isEmpty()) {
                 return "";
             }
-        }
+        }*/
         Map<String, Object> commonMap = new HashMap<>();
         commonMap.putAll(parsMap1);
         commonMap.putAll(parsMap2);
