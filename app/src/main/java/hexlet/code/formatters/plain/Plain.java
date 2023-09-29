@@ -11,9 +11,9 @@ public class Plain {
             "class java.lang.Integer", "class java.lang.Character", "class java.lang.Long",
             "class java.lang.Float", "class java.lang.Double");
     public static String representPlainStyle(Map<String, Object> parsMap1, Map<String, Object> parsMap2) {
-/*        if (parsMap1.isEmpty() && parsMap2.isEmpty()) {
+        if (parsMap1.isEmpty() && parsMap2.isEmpty()) {
             return "";
-        }*/
+        }
         Map<String, Object> commonMap = new HashMap<>();
         commonMap.putAll(parsMap1);
         commonMap.putAll(parsMap2);
@@ -59,6 +59,7 @@ public class Plain {
                 }
             }
         }
+        System.out.println(result.substring(0, result.length() - 1));
         return result.substring(0, result.length() - 1);
     }
 }

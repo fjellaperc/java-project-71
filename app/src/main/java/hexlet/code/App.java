@@ -17,7 +17,6 @@ public class App implements Callable<String> {
     private File file2;
     @CommandLine.Option(names = {"-f", "--format"}, description = "output format [default: stylish]")
     private String format;
-
     @Override
     public String call() throws Exception {
         String filepath1 = file1.getAbsolutePath();

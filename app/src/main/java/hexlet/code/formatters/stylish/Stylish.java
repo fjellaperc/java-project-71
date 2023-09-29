@@ -7,9 +7,9 @@ import java.util.Objects;
 
 public class Stylish {
     public static String stylishFormmater(Map<String, Object> parsMap1, Map<String, Object> parsMap2) {
-        /*if (parsMap1.isEmpty() && parsMap2.isEmpty()) {
+        if (parsMap1.isEmpty() && parsMap2.isEmpty()) {
             return "";
-        }*/
+        }
 
         Map<String, Object> commonMap = new HashMap<>();
         commonMap.putAll(parsMap1);
@@ -32,6 +32,7 @@ public class Stylish {
             }
         }
         result = result + "}";
+        System.out.println(result);
         return result;
     }
 }
