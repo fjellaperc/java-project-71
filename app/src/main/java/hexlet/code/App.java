@@ -11,7 +11,6 @@ import java.util.concurrent.Callable;
                 description = "Compares two configuration files and shows a difference.")
 
 public class App implements Callable<String> {
-    List<String> correctFormats = List.of("json", "yaml", "yml");
     @CommandLine.Parameters(index = "0", description = "path to first file")
     private File file1;
     @CommandLine.Parameters(index = "1", description = "path to second file")
