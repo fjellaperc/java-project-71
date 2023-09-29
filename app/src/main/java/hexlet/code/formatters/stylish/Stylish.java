@@ -7,13 +7,13 @@ import java.util.Objects;
 
 public class Stylish {
     public static String stylishFormmater(Map<String, Object> parsMap1, Map<String, Object> parsMap2) {
+        if (parsMap1.isEmpty() && parsMap2.isEmpty()) {
+            return "";
+        }
         Map<String, Object> commonMap = new HashMap<>();
         commonMap.putAll(parsMap1);
         commonMap.putAll(parsMap2);
         List<String> keys = commonMap.keySet().stream().sorted().toList();
-        if (keys.isEmpty()) {
-            return "";
-        }
         String result = "{\n";
         for (String key : keys) {
             if (parsMap1.containsKey(key) && !parsMap2.containsKey(key)) { // В первой есть во 2 нет

@@ -28,7 +28,7 @@ class DifferTest {
 
     @Test
     public void isEmptyFiles() throws Exception {
-        String expected1 = "{\n}";
+        String expected1 = "";
         String actual1 = Differ.generate(emptyFile1.getAbsolutePath(), emptyFile2.getAbsolutePath(), stylish);
         Assertions.assertEquals(expected1, actual1);
         String expected2 = "";
@@ -47,7 +47,6 @@ class DifferTest {
         String actual1 = Differ.generate(emptyFile1.getAbsolutePath(), flatFile2.getAbsolutePath(), stylish);
         Assertions.assertEquals(expected1, actual1);
     }
-
     @Test
     public void isEmptyFlatFile2() throws Exception {
         String expected1 = """
