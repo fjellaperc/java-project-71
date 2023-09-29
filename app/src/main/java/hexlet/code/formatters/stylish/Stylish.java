@@ -7,12 +7,10 @@ import java.util.Objects;
 
 public class Stylish {
     public static String stylishFormmater(Map<String, Object> parsMap1, Map<String, Object> parsMap2) {
-        System.out.println("STYLISH1 " + parsMap1);
-        System.out.println("STYLISH2 " + parsMap2);
-        System.out.println("Map1Stylish " + parsMap1.isEmpty());
-        System.out.println("Map2Stylish " + parsMap2.isEmpty());
-        if (parsMap1.isEmpty() && parsMap2.isEmpty()) {
-            return "";
+        if (parsMap1.isEmpty()) { //Если обе мапы пустые возвращаем пустую строку
+            if (parsMap2.isEmpty()) {
+                return "";
+            }
         }
         Map<String, Object> commonMap = new HashMap<>();
         commonMap.putAll(parsMap1);

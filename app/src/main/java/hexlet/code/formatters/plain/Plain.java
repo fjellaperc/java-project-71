@@ -11,10 +11,10 @@ public class Plain {
             "class java.lang.Integer", "class java.lang.Character", "class java.lang.Long",
             "class java.lang.Float", "class java.lang.Double");
     public static String representPlainStyle(Map<String, Object> parsMap1, Map<String, Object> parsMap2) {
-        System.out.println("Map1Plain " + parsMap1.isEmpty());
-        System.out.println("Map2Plain " + parsMap2.isEmpty());
-        if (parsMap1.isEmpty() && parsMap2.isEmpty()) {
-            return "";
+        if (parsMap1.isEmpty()) { //Если обе мапы пустые возвращаем пустую строку
+            if (parsMap2.isEmpty()) {
+                return "";
+            }
         }
         Map<String, Object> commonMap = new HashMap<>();
         commonMap.putAll(parsMap1);
