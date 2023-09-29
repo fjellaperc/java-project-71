@@ -7,15 +7,15 @@ import java.util.Objects;
 
 public class Stylish {
     public static String stylishFormmater(Map<String, Object> parsMap1, Map<String, Object> parsMap2) {
-        if (parsMap1.isEmpty()) { //Если обе мапы пустые возвращаем пустую строку
-            if (parsMap2.isEmpty()) {
-                return "";
-            }
+        System.out.println("STYLISH WELCOME YOU");
+        if (parsMap1.isEmpty() && parsMap2.isEmpty()) {
+            return "";
         }
         Map<String, Object> commonMap = new HashMap<>();
         commonMap.putAll(parsMap1);
         commonMap.putAll(parsMap2);
         List<String> keys = commonMap.keySet().stream().sorted().toList();
+        System.out.println("LIST " + keys);
         String result = "{\n";
         for (String key : keys) {
             if (parsMap1.containsKey(key) && !parsMap2.containsKey(key)) { // В первой есть во 2 нет
@@ -31,6 +31,7 @@ public class Stylish {
                 }
             }
         }
+        System.out.println("BEGIN OF STYLISH");
         result = result + "}";
         return result;
     }
