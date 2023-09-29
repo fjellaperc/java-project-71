@@ -11,8 +11,8 @@ public class Plain {
             "class java.lang.Integer", "class java.lang.Character", "class java.lang.Long",
             "class java.lang.Float", "class java.lang.Double");
     public static String representPlainStyle(Map<String, Object> parsMap1, Map<String, Object> parsMap2) {
-        System.out.println(parsMap1);
-        System.out.println(parsMap2);
+        System.out.println("Map1 " + parsMap1.isEmpty());
+        System.out.println("Map2" + parsMap2.isEmpty());
         if (parsMap1.isEmpty() && parsMap2.isEmpty()) {
             return "";
         }
