@@ -15,7 +15,7 @@ public class Plain {
         commonMap.putAll(parsMap1);
         commonMap.putAll(parsMap2);
         List<String> keys = commonMap.keySet().stream().sorted().toList();
-        if (keys.size() == 0) {
+        if (keys.isEmpty()) {
             return "";
         }
         String result = "";

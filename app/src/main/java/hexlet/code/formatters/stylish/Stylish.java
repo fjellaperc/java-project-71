@@ -11,6 +11,9 @@ public class Stylish {
         commonMap.putAll(parsMap1);
         commonMap.putAll(parsMap2);
         List<String> keys = commonMap.keySet().stream().sorted().toList();
+        if (keys.isEmpty()) {
+            return "";
+        }
         String result = "{\n";
         for (String key : keys) {
             if (parsMap1.containsKey(key) && !parsMap2.containsKey(key)) { // В первой есть во 2 нет
@@ -27,7 +30,6 @@ public class Stylish {
             }
         }
         result = result + "}";
-        System.out.println(result);
         return result;
     }
 }

@@ -17,6 +17,9 @@ public class Json {
         commonMap.putAll(parsMap2);
         List<String> keys = commonMap.keySet().stream().sorted()
                 .toList();
+        if (keys.isEmpty()) {
+            return "";
+        }
         LinkedHashMap<String, Object> result = new LinkedHashMap<>();
         for (String key : keys) {
             if (parsMap1.containsKey(key) && !parsMap2.containsKey(key)) { // В первой есть во 2 нет

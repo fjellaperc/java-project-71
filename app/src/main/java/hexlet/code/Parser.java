@@ -6,15 +6,16 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
 
 import java.io.File;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Parser {
     public static Map<String, Object> parserData(String filepath) throws Exception {
-        String emptyFile = Files.readString(new File(filepath).toPath());
+/*        String emptyFile = Files.readString(new File(filepath).toPath());
         if (emptyFile.isEmpty()) {
             return new HashMap<>();
-        }
+        }*/
         if (filepath.toLowerCase().contains("json")) {
             ObjectMapper mapper = new ObjectMapper();
             return mapper.readValue(new File(filepath), new TypeReference<>() {
