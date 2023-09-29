@@ -13,10 +13,12 @@ import java.util.Map;
 public class Parser {
     public static Map<String, Object> parserData(String filepath) throws Exception {
         String emptyFile = Files.readString(new File(filepath).toPath());
+        System.out.println("Путь к пустому " + emptyFile);
         if (emptyFile.isEmpty()) {
             return new HashMap<>();
         }
-        if (filepath.toLowerCase().contains("json")) {
+        System.out.println("Путь к файлу " + filepath);
+        if (filepath.contains("json")) {
             ObjectMapper mapper = new ObjectMapper();
             return mapper.readValue(new File(filepath), new TypeReference<>() {
             });
