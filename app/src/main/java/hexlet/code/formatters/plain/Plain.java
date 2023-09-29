@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Objects;
 
 public class Plain {
-    final private static List<String> CLASSES = List.of("class java.lang.String", "class java.lang.Boolean",
+    final static List<String> CLASSES = List.of("class java.lang.String", "class java.lang.Boolean",
             "class java.lang.Integer", "class java.lang.Character", "class java.lang.Long",
             "class java.lang.Float", "class java.lang.Double");
     public static String representPlainStyle(Map<String, Object> parsMap1, Map<String, Object> parsMap2) {

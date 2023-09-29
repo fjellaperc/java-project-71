@@ -9,7 +9,7 @@ import java.util.concurrent.Callable;
         (name = "gendiff", mixinStandardHelpOptions = true, version = "gendiff 1.0",
                 description = "Compares two configuration files and shows a difference.")
 
-public class App implements Callable<String> {
+final class App implements Callable<String> {
     @CommandLine.Parameters(index = "0", description = "path to first file")
     private File file1;
     @CommandLine.Parameters(index = "1", description = "path to second file")
@@ -17,7 +17,7 @@ public class App implements Callable<String> {
     @CommandLine.Option(names = {"-f", "--format"}, description = "output format [default: stylish]")
     private String format;
     @Override
-    final public String call() throws Exception {
+      public String call() throws Exception {
         String filepath1 = file1.getAbsolutePath();
         String filepath2 = file2.getAbsolutePath();
         if (!file1.exists()) {
