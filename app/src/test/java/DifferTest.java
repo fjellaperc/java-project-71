@@ -31,17 +31,18 @@ class DifferTest {
         String expected1 = "{\n}";
         String actual1 = Differ.generate(emptyFile1.getAbsolutePath(), emptyFile2.getAbsolutePath(), stylish);
         Assertions.assertEquals(expected1, actual1);
+        String expected2 = "";
         String actual2 = Differ.generate(emptyFile1.getAbsolutePath(), emptyFile2.getAbsolutePath(), plain);
-        Assertions.assertEquals(expected1, actual2);
+        Assertions.assertEquals(expected2, actual2);
     }
 
     @Test
     public void isEmptyFlatFile1() throws Exception {
         String expected1 = """
                 {
-                + host: hexlet.io
-                + timeout: 20
-                + verbose: true
+                  + host: hexlet.io
+                  + timeout: 20
+                  + verbose: true
                 }""";
         String actual1 = Differ.generate(emptyFile1.getAbsolutePath(), flatFile2.getAbsolutePath(), stylish);
         Assertions.assertEquals(expected1, actual1);
@@ -51,10 +52,10 @@ class DifferTest {
     public void isEmptyFlatFile2() throws Exception {
         String expected1 = """
                 {
-                - follow: false
-                - host: hexlet.io
-                - proxy: 123.234.53.22
-                - timeout: 50
+                  - follow: false
+                  - host: hexlet.io
+                  - proxy: 123.234.53.22
+                  - timeout: 50
                 }""";
         String actual1 = Differ.generate(flatFile1.getAbsolutePath(), emptyFile2.getAbsolutePath(), stylish);
         Assertions.assertEquals(expected1, actual1);
@@ -64,40 +65,40 @@ class DifferTest {
     public void generateTestStylishFormat() throws Exception {
         String expected1 = """
                 {
-                - follow: false
-                  host: hexlet.io
-                - proxy: 123.234.53.22
-                - timeout: 50
-                + timeout: 20
-                + verbose: true
+                  - follow: false
+                    host: hexlet.io
+                  - proxy: 123.234.53.22
+                  - timeout: 50
+                  + timeout: 20
+                  + verbose: true
                 }""";
         String actual1 = Differ.generate(flatFile1.getAbsolutePath(), flatFile2.getAbsolutePath(), stylish);
         Assertions.assertEquals(expected1, actual1);
         String expected2 = """
                   {
-                    chars1: [a, b, c]
-                  - chars2: [d, e, f]
-                  + chars2: false
-                  - checked: false
-                  + checked: true
-                  - default: null
-                  + default: [value1, value2]
-                  - id: 45
-                  + id: null
-                  - key1: value1
-                  + key2: value2
-                    numbers1: [1, 2, 3, 4]
-                  - numbers2: [2, 3, 4, 5]
-                  + numbers2: [22, 33, 44, 55]
-                  - numbers3: [3, 4, 5]
-                  + numbers4: [4, 5, 6]
-                  + obj1: {nestedKey=value, isNested=true}
-                  - setting1: Some value
-                  + setting1: Another value
-                  - setting2: 200
-                  + setting2: 300
-                  - setting3: true
-                  + setting3: none
+                      chars1: [a, b, c]
+                    - chars2: [d, e, f]
+                    + chars2: false
+                    - checked: false
+                    + checked: true
+                    - default: null
+                    + default: [value1, value2]
+                    - id: 45
+                    + id: null
+                    - key1: value1
+                    + key2: value2
+                      numbers1: [1, 2, 3, 4]
+                    - numbers2: [2, 3, 4, 5]
+                    + numbers2: [22, 33, 44, 55]
+                    - numbers3: [3, 4, 5]
+                    + numbers4: [4, 5, 6]
+                    + obj1: {nestedKey=value, isNested=true}
+                    - setting1: Some value
+                    + setting1: Another value
+                    - setting2: 200
+                    + setting2: 300
+                    - setting3: true
+                    + setting3: none
                   }""";
         String actual2 = Differ.generate(dataStructure1.getAbsolutePath(), dataStructure2.getAbsolutePath(), stylish);
         Assertions.assertEquals(expected2, actual2);

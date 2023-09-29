@@ -1,6 +1,6 @@
 package hexlet.code.formatters.json;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreType;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -32,9 +32,7 @@ public class Json {
                 }
             }
         }
-//        ObjectMapper mapper = new ObjectMapper();
-//        mapper.writeValue(new File("/home/fjellaperc/test.json"), result);
-        System.out.println(result.toString());
-        return result.toString();
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.writeValueAsString(result);
     }
 }

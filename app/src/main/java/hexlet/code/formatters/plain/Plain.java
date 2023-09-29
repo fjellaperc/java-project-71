@@ -15,6 +15,9 @@ public class Plain {
         commonMap.putAll(parsMap1);
         commonMap.putAll(parsMap2);
         List<String> keys = commonMap.keySet().stream().sorted().toList();
+        if (keys.isEmpty()) {
+            return "";
+        }
         String result = "";
         for (String key : keys) {
             if (parsMap1.containsKey(key) && !parsMap2.containsKey(key)) { // В первой есть во 2 нет
@@ -25,9 +28,10 @@ public class Plain {
                     result = result + "Property '" + key + "' was added with value: [complex value]\n";
                 } else {
                     if (parsMap2.get(key) instanceof String) { //Если значение строка то ставми кавычки ' '
-                    result = result + "Property '" + key + "' was added with value: '" + parsMap2.get(key) + "'\n";
-                } else {
-                        result = result + "Property '" + key + "' was added with value: " + parsMap2.get(key) + "\n";
+                        result = result + "Property '" + key + "' was added with value: '" + parsMap2.get(key) + "'\n";
+                    } else {
+                        result = result + "Property '" + key + "' was added with value: "
+                                + parsMap2.get(key) + "\n";
                     }
                 }
             } else {
@@ -36,19 +40,19 @@ public class Plain {
                             && !classes.contains(parsMap1.get(key).getClass().toString())) {
                         result = result + "Property '" + key + "' was updated. From [complex value]";
                     } else {
-                        if (parsMap1.get(key) instanceof String) {//Если значение строка то ставми кавычки ' '
-                        result = result + "Property '" + key + "' was updated. From '" + parsMap1.get(key) + "'";
-                    } else {
-                        result = result + "Property '" + key + "' was updated. From " + parsMap1.get(key);
+                        if (parsMap1.get(key) instanceof String) { //Если значение строка то ставми кавычки ' '
+                            result = result + "Property '" + key + "' was updated. From '" + parsMap1.get(key) + "'";
+                        } else {
+                            result = result + "Property '" + key + "' was updated. From " + parsMap1.get(key);
+                        }
                     }
-                }
                     if (parsMap2.get(key) != null  //Проверка на примитивность
                             && !classes.contains(parsMap2.get(key).getClass().toString())) {
                         result = result + " to [complex value]\n";
                     } else {
                         if (parsMap2.get(key) instanceof String) {
-                        result = result + " to '" + parsMap2.get(key) + "'\n";
-                    } else {
+                            result = result + " to '" + parsMap2.get(key) + "'\n";
+                        } else {
                             result = result + " to " + parsMap2.get(key) + "\n";
                         }
                     }

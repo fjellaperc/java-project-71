@@ -21,5 +21,5 @@ run-Structurejson-out:
 run-help:
 		./build/install/app/bin/app -h
 build:
-		gradle clean build
+		./gradlew clean build
 .PHONY: build
