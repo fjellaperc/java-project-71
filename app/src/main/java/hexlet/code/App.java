@@ -3,7 +3,6 @@ package hexlet.code;
 import picocli.CommandLine;
 
 import java.io.File;
-import java.util.List;
 import java.util.concurrent.Callable;
 
 @CommandLine.Command
@@ -18,7 +17,7 @@ public class App implements Callable<String> {
     @CommandLine.Option(names = {"-f", "--format"}, description = "output format [default: stylish]")
     private String format;
     @Override
-    public String call() throws Exception {
+    final public String call() throws Exception {
         String filepath1 = file1.getAbsolutePath();
         String filepath2 = file2.getAbsolutePath();
         if (!file1.exists()) {

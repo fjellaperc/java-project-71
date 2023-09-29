@@ -6,14 +6,14 @@ import org.junit.jupiter.api.Test;
 import java.io.File;
 
 class DifferTest {
-    File flatFile1;
-    File flatFile2;
-    File emptyFile1;
-    File emptyFile2;
-    File dataStructure1;
-    File dataStructure2;
-    String stylish = "stylish";
-    String plain = "plain";
+    private File flatFile1;
+    private File flatFile2;
+    private File emptyFile1;
+    private File emptyFile2;
+    private File dataStructure1;
+    private File dataStructure2;
+    private String stylish = "stylish";
+    private String plain = "plain";
 
 
     @BeforeEach
