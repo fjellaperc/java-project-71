@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class Stylish implements Represent {
     @Override
-    public String representFormat(List<Map<String, Object>> statusKeys) {
+    public final String representFormat(List<Map<String, Object>> statusKeys) {
         String result = "{\n";
         for (Map<String, Object> map : statusKeys) {
             if (map.get("type").equals("deleted")) {

@@ -9,15 +9,15 @@ import java.util.List;
 import java.util.Map;
 
 public class Formatter {
-    private final static Map<String, Represent> FORMAT = Map.of(
-            "plain", new Plain(),
-            "stylish", new Stylish(),
-            "json", new Json());
     public static String represent(Map<String, Object> parsMap1, Map<String, Object> parsMap2, String format)
             throws Exception {
+        final Map<String, Represent> formats = Map.of(
+                "plain", new Plain(),
+                "stylish", new Stylish(),
+                "json", new Json());
         List<Map<String, Object>> statusKeys = Tree.buildTree(parsMap1, parsMap2);
-        if (FORMAT.containsKey(format)) {
-            return FORMAT.get(format).representFormat(statusKeys);
+        if (formats.containsKey(format)) {
+            return formats.get(format).representFormat(statusKeys);
         } else {
             throw new Exception("Unknown format, enter genDiff -h for more information");
         }

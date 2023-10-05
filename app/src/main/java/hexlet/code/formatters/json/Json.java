@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class Json implements Represent {
     @Override
-    public String representFormat(List<Map<String, Object>> statusKeys) throws JsonProcessingException {
+    public final String representFormat(List<Map<String, Object>> statusKeys) throws JsonProcessingException {
         if (statusKeys.isEmpty()) {
             return "";
         }

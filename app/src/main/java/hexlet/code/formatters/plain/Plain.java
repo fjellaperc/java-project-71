@@ -23,7 +23,7 @@ public class Plain implements Represent {
         }
     }
     @Override
-    public String representFormat(List<Map<String, Object>> statusKeys) {
+    public final String representFormat(List<Map<String, Object>> statusKeys) {
         if (statusKeys.isEmpty()) {
             return "";
         }
