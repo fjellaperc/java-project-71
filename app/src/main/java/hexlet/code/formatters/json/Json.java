@@ -1,17 +1,42 @@
 package hexlet.code.formatters.json;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import hexlet.code.formatters.Represent;
 
-import java.io.IOException;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
-public class Json {
-    public static String parserJson(Map<String, Object> parsMap1,
-                                                 Map<String, Object> parsMap2) throws IOException {
+public class Json implements Represent {
+    @Override
+    public String representFormat(List<Map<String, Object>> statusKeys) throws JsonProcessingException {
+        if (statusKeys.isEmpty()) {
+            return "";
+        }
+
+        LinkedHashMap<String, Object> result = new LinkedHashMap<>();
+        for (Map<String, Object> map : statusKeys) {
+            if (map.get("type").equals("deleted")) {
+                result.put("  - " + map.get("key") + ":", map.get("value"));
+            } else if (map.get("type").equals("added")) {
+                result.put("  + " + map.get("key") + ":", map.get("value"));
+            } else if (map.get("type").equals("changed")) {
+                result.put("  - " + map.get("key") + ":", map.get("value1"));
+                result.put("  + " + map.get("key") + ":", map.get("value2"));
+            } else if (map.get("type").equals("notChanged")) {
+                result.put("   " + map.get("key") + ":", map.get("value"));
+            }
+        }
+        ObjectMapper mapper = new ObjectMapper();
+        System.out.println(mapper.writeValueAsString(result));
+        return mapper.writeValueAsString(result);
+    }
+}
+
+    /*  public static String parserJson(List<Map<String, String>> statusKeys) throws IOException {*/
+
+/*
         if (parsMap1.isEmpty()) { //Если обе мапы пустые возвращаем пустую строку
             if (parsMap2.isEmpty()) {
                 return "";
@@ -40,5 +65,5 @@ public class Json {
         ObjectMapper mapper = new ObjectMapper();
         System.out.println(mapper.writeValueAsString(result));
         return mapper.writeValueAsString(result);
-    }
-}
+*/
+

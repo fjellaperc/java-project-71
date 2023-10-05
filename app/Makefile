@@ -22,4 +22,10 @@ run-help:
 		./build/install/app/bin/app -h
 build:
 		./gradlew clean build
+test:
+		./gradlew clean test
+clean:
+		gradle clean
+dist:
+		gradle installDist
 .PHONY: build

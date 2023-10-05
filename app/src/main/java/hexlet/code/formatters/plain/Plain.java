@@ -1,65 +1,45 @@
 package hexlet.code.formatters.plain;
 
 
-import java.util.HashMap;
+import hexlet.code.formatters.Represent;
+
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
-public class Plain {
-    public static String representPlainStyle(Map<String, Object> parsMap1, Map<String, Object> parsMap2) {
-        final List<String> classes = List.of("class java.lang.String", "class java.lang.Boolean",
+public class Plain implements Represent {
+        public final static List<String> CLASSES = List.of("class java.lang.String", "class java.lang.Boolean",
                 "class java.lang.Integer", "class java.lang.Character", "class java.lang.Long",
                 "class java.lang.Float", "class java.lang.Double");
-        if (parsMap1.isEmpty() && parsMap2.isEmpty()) {
-            return "";
-        }
-        Map<String, Object> commonMap = new HashMap<>();
-        commonMap.putAll(parsMap1);
-        commonMap.putAll(parsMap2);
-        List<String> keys = commonMap.keySet().stream().sorted().toList();
-        String result = "";
-        for (String key : keys) {
-            if (parsMap1.containsKey(key) && !parsMap2.containsKey(key)) { // В первой есть во 2 нет
-                result = result + "Property '" + key + "' was removed\n";
-            } else if (!parsMap1.containsKey(key) && parsMap2.containsKey(key)) { // Во второй есть в 1 нет
-                if (!classes.contains(parsMap2.get(key).getClass().toString()) //Проверка на примитивность
-                        && parsMap2.get(key) != null) {
-                    result = result + "Property '" + key + "' was added with value: [complex value]\n";
-                } else {
-                    if (parsMap2.get(key) instanceof String) { //Если значение строка то ставми кавычки ' '
-                        result = result + "Property '" + key + "' was added with value: '" + parsMap2.get(key) + "'\n";
-                    } else {
-                        result = result + "Property '" + key + "' was added with value: "
-                                + parsMap2.get(key) + "\n";
-                    }
-                }
+        public static String checkPrimitive(Object obj) {
+            if (!CLASSES.contains(obj.getClass().toString())) {
+                return "[complex value]";
             } else {
-                if (!Objects.equals(parsMap1.get(key), parsMap2.get(key))) { //Значения не равны
-                    if (parsMap1.get(key) != null  //Проверка на примитивность
-                            && !classes.contains(parsMap1.get(key).getClass().toString())) {
-                        result = result + "Property '" + key + "' was updated. From [complex value]";
-                    } else {
-                        if (parsMap1.get(key) instanceof String) { //Если значение строка то ставми кавычки ' '
-                            result = result + "Property '" + key + "' was updated. From '" + parsMap1.get(key) + "'";
-                        } else {
-                            result = result + "Property '" + key + "' was updated. From " + parsMap1.get(key);
-                        }
-                    }
-                    if (parsMap2.get(key) != null  //Проверка на примитивность
-                            && !classes.contains(parsMap2.get(key).getClass().toString())) {
-                        result = result + " to [complex value]\n";
-                    } else {
-                        if (parsMap2.get(key) instanceof String) {
-                            result = result + " to '" + parsMap2.get(key) + "'\n";
-                        } else {
-                            result = result + " to " + parsMap2.get(key) + "\n";
-                        }
-                    }
+                if (obj instanceof String && !obj.equals("null")) {
+                    return "'" + obj + "'";
+                } else {
+                    return obj.toString();
                 }
             }
         }
-        System.out.println(result.substring(0, result.length() - 1));
-        return result.substring(0, result.length() - 1);
-    }
+        @Override
+        public String representFormat(List < Map <String, Object>> statusKeys){
+            if (statusKeys.isEmpty()) {
+                return "";
+            }
+            String result = "{\n";
+            for (Map<String, Object> map : statusKeys) {
+                if (map.get("type").equals("deleted")) {
+                    result = result + "Property '" + map.get("key") + "' was removed\n";
+                } else if (map.get("type").equals("added")) {
+                        result = result + "Property '" + map.get("key") + "' was added with value: "
+                                + checkPrimitive(map.get("value")) + "\n";
+                } else if (map.get("type").equals("changed")) {
+                    result = result + "Property '" + map.get("key") + "' was updated. From " +
+                            checkPrimitive(map.get("value1")) + " to " + checkPrimitive(map.get("value2")) + "\n";
+                }
+            }
+            result = result + "}";
+            System.out.println(result);
+            return result;
+        }
 }
