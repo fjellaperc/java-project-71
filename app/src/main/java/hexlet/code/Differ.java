@@ -2,7 +2,6 @@ package hexlet.code;
 
 import hexlet.code.formatters.Formatter;
 
-import java.io.File;
 import java.util.Map;
 
 public class Differ {

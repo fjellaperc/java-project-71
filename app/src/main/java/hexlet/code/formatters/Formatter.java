@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Formatter {
-    public final static Map<String, Represent> FORMAT = Map.of(
+    private final static Map<String, Represent> FORMAT = Map.of(
             "plain", new Plain(),
             "stylish", new Stylish(),
             "json", new Json());

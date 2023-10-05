@@ -1,6 +1,11 @@
 package hexlet.code;
 
-import java.util.*;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.ArrayList;
 
 public class Tree {
     public static Map<String, Object> removeFormatMap(String key, Object value) {
@@ -29,20 +34,19 @@ public class Tree {
         commonMap.putAll(parsMap1);
         commonMap.putAll(parsMap2);
         List<String> sortedKeys = commonMap.keySet().stream().sorted().toList();
-        String value = "";
         for (String key : sortedKeys) {
-                if (parsMap1.containsKey(key) && !parsMap2.containsKey(key)) { //В первой есть во второй нет
-                    result.add(removeFormatMap(key, parsMap1.get(key)));
-                } else if (!parsMap1.containsKey(key) && parsMap2.containsKey(key)) { // Во второй есть в первой нет
-                    result.add(addFormatMap(key, parsMap2.get(key)));
+            if (parsMap1.containsKey(key) && !parsMap2.containsKey(key)) { //В первой есть во второй нет
+                result.add(removeFormatMap(key, parsMap1.get(key)));
+            } else if (!parsMap1.containsKey(key) && parsMap2.containsKey(key)) { // Во второй есть в первой нет
+                result.add(addFormatMap(key, parsMap2.get(key)));
+            } else {
+                if (Objects.equals(parsMap1.get(key), parsMap2.get(key))) { //Значения равны
+                    result.add(withoutChange(key, parsMap1.get(key)));
                 } else {
-                    if (Objects.equals(parsMap1.get(key), parsMap2.get(key))) { //Значения равны
-                        result.add(withoutChange(key, parsMap1.get(key)));
-                    } else {
-                        result.add(changeFormatMap(key, parsMap1.get(key), parsMap2.get(key)));
-                    }
+                    result.add(changeFormatMap(key, parsMap1.get(key), parsMap2.get(key)));
                 }
             }
+        }
         return result;
     }
 }
