@@ -15,17 +15,16 @@ public class Parser {
             "json", new ObjectMapper(),
             "yaml", new YAMLMapper(),
             "yml", new YAMLMapper());
-    public static Map<String, Object> parserData(File inputFile) throws Exception {
-        String formatFile = getFormat(inputFile);
-        if (checkEmptyFile(inputFile)) {
+    public static Map<String, Object> parserData(String filepath) throws Exception {
+        String formatFile = getFormat(filepath);
+        if (checkEmptyFile(new File(filepath))) {
             return new HashMap<>();
         }
-        return CHOICE.get(formatFile).readValue(inputFile, new TypeReference<>() {
+        return CHOICE.get(formatFile).readValue(new File(filepath), new TypeReference<>() {
         });
     }
-    public static String getFormat(File inputFile) throws Exception {
-        String absolutePath = inputFile.getAbsolutePath();
-        String formatFile = absolutePath.substring(absolutePath.lastIndexOf(".") + 1);
+    public static String getFormat(String filepath) throws Exception {
+        String formatFile = filepath.substring(filepath.lastIndexOf(".") + 1);
         if (CHOICE.containsKey(formatFile)) {
             return formatFile;
         } else {

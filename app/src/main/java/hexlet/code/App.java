@@ -27,7 +27,7 @@ final class App implements Callable<String> {
         if (format == null) {
             format = "stylish";
         }
-        return Differ.generate(file1, file2, format);
+        return Differ.generate(file1.getAbsolutePath(), file2.getAbsolutePath(), format);
     }
     public static void main(String[] args) {
         int cmd = new CommandLine(new App()).execute(args);

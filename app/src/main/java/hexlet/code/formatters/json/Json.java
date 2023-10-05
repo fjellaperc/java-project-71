@@ -59,11 +59,6 @@ public class Json implements Represent {
                 } else { //Значения не равны
                     result.put("  - " + key + ":", parsMap1.get(key));
                     result.put("  + " + key + ":", parsMap2.get(key));
-                }
-            }
-        }
-        ObjectMapper mapper = new ObjectMapper();
-        System.out.println(mapper.writeValueAsString(result));
-        return mapper.writeValueAsString(result);
+
 */
 
