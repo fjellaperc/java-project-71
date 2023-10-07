@@ -1,4 +1,3 @@
-/*
 import hexlet.code.Differ;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -30,10 +29,10 @@ class DifferTest {
     @Test
     public void isEmptyFiles() throws Exception {
         String expected1 = "";
-        String actual1 = Differ.generate(emptyFile1, emptyFile2, stylish);
+        String actual1 = Differ.generate(emptyFile1.getAbsolutePath(), emptyFile2.getAbsolutePath(), stylish);
         Assertions.assertEquals(expected1, actual1);
         String expected2 = "";
-        String actual2 = Differ.generate(emptyFile1, emptyFile2, plain);
+        String actual2 = Differ.generate(emptyFile1.getAbsolutePath(), emptyFile2.getAbsolutePath(), plain);
         Assertions.assertEquals(expected2, actual2);
     }
 
@@ -45,7 +44,7 @@ class DifferTest {
                   + timeout: 20
                   + verbose: true
                 }""";
-        String actual1 = Differ.generate(emptyFile1, flatFile2, stylish);
+        String actual1 = Differ.generate(emptyFile1.getAbsolutePath(), flatFile2.getAbsolutePath(), stylish);
         Assertions.assertEquals(expected1, actual1);
     }
     @Test
@@ -57,7 +56,7 @@ class DifferTest {
                   - proxy: 123.234.53.22
                   - timeout: 50
                 }""";
-        String actual1 = Differ.generate(flatFile1, emptyFile2, stylish);
+        String actual1 = Differ.generate(flatFile1.getAbsolutePath(), emptyFile2.getAbsolutePath(), stylish);
         Assertions.assertEquals(expected1, actual1);
     }
 
@@ -72,7 +71,7 @@ class DifferTest {
                   + timeout: 20
                   + verbose: true
                 }""";
-        String actual1 = Differ.generate(flatFile1, flatFile2, stylish);
+        String actual1 = Differ.generate(flatFile1.getAbsolutePath(), flatFile2.getAbsolutePath(), stylish);
         Assertions.assertEquals(expected1, actual1);
         String expected2 = """
                   {
@@ -100,8 +99,8 @@ class DifferTest {
                     - setting3: true
                     + setting3: none
                   }""";
-        String actual2 = Differ.generate(dataStructure1, dataStructure2, stylish);
+        String actual2 = Differ.generate(dataStructure1.getAbsolutePath(), dataStructure2.getAbsolutePath(), stylish);
         Assertions.assertEquals(expected2, actual2);
     }
 }
-*/
+

@@ -5,33 +5,30 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
 
 import java.io.File;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Parser {
-    public static final Map<String, ObjectMapper> CHOICE = Map.of(
-            "json", new ObjectMapper(),
-            "yaml", new YAMLMapper(),
-            "yml", new YAMLMapper());
+
     public static Map<String, Object> parserData(String filepath) throws Exception {
-        String formatFile = getFormat(filepath);
-        if (checkEmptyFile(new File(filepath))) {
+        File inputFile = new File(filepath);
+        if (Files.readString(new File(filepath).toPath()).isEmpty()) { //Если файл пуст вернем пустой словарь
             return new HashMap<>();
         }
-        return CHOICE.get(formatFile).readValue(new File(filepath), new TypeReference<>() {
-        });
-    }
-    public static String getFormat(String filepath) throws Exception {
         String formatFile = filepath.substring(filepath.lastIndexOf(".") + 1);
-        if (CHOICE.containsKey(formatFile)) {
-            return formatFile;
-        } else {
-            throw new Exception("Incorrectly format of files, needed YAML or JSON");
+        switch (formatFile) {
+            case "json": {
+                ObjectMapper mapperJSON = new ObjectMapper();
+                return mapperJSON.readValue(inputFile, new TypeReference<>() {
+                });
+            }
+            case ("yaml"), ("yml"): {
+                YAMLMapper mapperYAML = new YAMLMapper();
+                return mapperYAML.readValue(inputFile, new TypeReference<>() {
+                });
+            }
+            default: throw new Exception("Incorrect format, needed JSON or YAML");
         }
-    }
-    public static boolean checkEmptyFile(File inputFile) throws IOException {
-        return Files.readString(inputFile.toPath()).isEmpty();
     }
 }

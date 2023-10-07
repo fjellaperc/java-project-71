@@ -10,15 +10,17 @@ public class Stylish implements Represent {
     public final String representFormat(List<Map<String, Object>> statusKeys) {
         String result = "{\n";
         for (Map<String, Object> map : statusKeys) {
-            if (map.get("type").equals("deleted")) {
-                result = result + "  - " + map.get("key") + ": " + map.get("value") + "\n";
-            } else if (map.get("type").equals("added")) {
-                result = result + "  + " + map.get("key") + ": " + map.get("value") + "\n";
-            } else if (map.get("type").equals("changed")) {
-                result = result + "  - " + map.get("key") + ": " + map.get("value1") + "\n";
-                result = result + "  + " + map.get("key") + ": " + map.get("value2") + "\n";
-            } else if (map.get("type").equals("notChanged")) {
-                result = result + "    " + map.get("key") + ": " + map.get("value") + "\n";
+            String status = map.get("type").toString();
+            switch (status) {
+                case "deleted":
+                    result = result + "  - " + map.get("key") + ": " + map.get("value") + "\n";
+                case "added":
+                    result = result + "  + " + map.get("key") + ": " + map.get("value") + "\n";
+                case "changed":
+                    result = result + "  - " + map.get("key") + ": " + map.get("value1") + "\n";
+                    result = result + "  + " + map.get("key") + ": " + map.get("value2") + "\n";
+                case "notChanged":
+                    result = result + "    " + map.get("key") + ": " + map.get("value") + "\n";
             }
         }
         result = result + "}";

@@ -18,18 +18,18 @@ public class Json implements Represent {
         LinkedHashMap<String, Object> result = new LinkedHashMap<>();
         for (Map<String, Object> map : statusKeys) {
             if (map.get("type").equals("deleted")) {
-                result.put("  - " + map.get("key") + ":", map.get("value"));
-            } else if (map.get("type").equals("added")) {
                 result.put("  + " + map.get("key") + ":", map.get("value"));
+            } else if (map.get("type").equals("added")) {
+                result.put("  - " + map.get("key") + ":", map.get("value"));
             } else if (map.get("type").equals("changed")) {
-                result.put("  - " + map.get("key") + ":", map.get("value1"));
-                result.put("  + " + map.get("key") + ":", map.get("value2"));
+                result.put("  + " + map.get("key") + ":", map.get("value1"));
+                result.put("  - " + map.get("key") + ":", map.get("value2"));
             } else if (map.get("type").equals("notChanged")) {
                 result.put("   " + map.get("key") + ":", map.get("value"));
             }
         }
         ObjectMapper mapper = new ObjectMapper();
-        System.out.println(mapper.writeValueAsString(result));
+        //System.out.println(mapper.writeValueAsString(result));
         return mapper.writeValueAsString(result);
     }
 }
