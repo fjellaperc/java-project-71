@@ -33,12 +33,15 @@ public class Plain implements Represent {
             switch (status) {
                 case "deleted":
                     result = result + "Property '" + map.get("key") + "' was removed\n";
+                    break;
                 case "added":
                     result = result + "Property '" + map.get("key") + "' was added with value: "
                         + checkPrimitive(map.get("value")) + "\n";
+                    break;
                 case "changed":
                     result = result + "Property '" + map.get("key") + "' was updated. From "
                         + checkPrimitive(map.get("value1")) + " to " + checkPrimitive(map.get("value2")) + "\n";
+                    break;
             }
         }
         result = result.substring(0, result.length() - 1);

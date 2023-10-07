@@ -14,13 +14,17 @@ public class Stylish implements Represent {
             switch (status) {
                 case "deleted":
                     result = result + "  - " + map.get("key") + ": " + map.get("value") + "\n";
+                    break;
                 case "added":
                     result = result + "  + " + map.get("key") + ": " + map.get("value") + "\n";
+                    break;
                 case "changed":
                     result = result + "  - " + map.get("key") + ": " + map.get("value1") + "\n";
                     result = result + "  + " + map.get("key") + ": " + map.get("value2") + "\n";
+                    break;
                 case "notChanged":
                     result = result + "    " + map.get("key") + ": " + map.get("value") + "\n";
+                    break;
             }
         }
         result = result + "}";
