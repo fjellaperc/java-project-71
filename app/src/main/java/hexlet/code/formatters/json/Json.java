@@ -18,6 +18,7 @@ public class Json implements Represent {
         for (Map<String, Object> map : statusKeys) {
             result = result + mapper.writeValueAsString(map);
         }
+        System.out.println(result);
         return result;
     }
 }
