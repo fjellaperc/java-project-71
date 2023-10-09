@@ -30,20 +30,14 @@ public class Plain implements Represent {
         String result = "";
         for (Map<String, Object> map : statusKeys) {
             String status = map.get("type").toString();
-            switch (status) {
-                case "deleted":
-                    result = result + "Property '" + map.get("key") + "' was removed\n";
-                    break;
-                case "added":
-                    result = result + "Property '" + map.get("key") + "' was added with value: "
+            if (status.equals("deleted")) {
+                result = result + "Property '" + map.get("key") + "' was removed\n";
+            } else if (status.equals("added")) {
+                result = result + "Property '" + map.get("key") + "' was added with value: "
                         + checkPrimitive(map.get("value")) + "\n";
-                    break;
-                case "changed":
-                    result = result + "Property '" + map.get("key") + "' was updated. From "
+            } else if (status.equals("changed")) {
+                result = result + "Property '" + map.get("key") + "' was updated. From "
                         + checkPrimitive(map.get("value1")) + " to " + checkPrimitive(map.get("value2")) + "\n";
-                    break;
-                default:
-                    result = "";
             }
         }
         result = result.substring(0, result.length() - 1);
