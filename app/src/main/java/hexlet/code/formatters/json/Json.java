@@ -15,22 +15,24 @@ public class Json implements Represent {
             return "";
         }
 
-        LinkedHashMap<String, Object> result = new LinkedHashMap<>();
+//        LinkedHashMap<String, Object> result = new LinkedHashMap<>();
+        String result = "";
+        ObjectMapper mapper = new ObjectMapper();
         for (Map<String, Object> map : statusKeys) {
-            if (map.get("type").equals("deleted")) {
-                result.put("  + " + map.get("key") + ":", map.get("value"));
-            } else if (map.get("type").equals("added")) {
+            result = result + mapper.writeValueAsString(map);
+            /*if (map.get("type").equals("deleted")) {
                 result.put("  - " + map.get("key") + ":", map.get("value"));
+            } else if (map.get("type").equals("added")) {
+                result.put("  + " + map.get("key") + ":", map.get("value"));
             } else if (map.get("type").equals("changed")) {
-                result.put("  + " + map.get("key") + ":", map.get("value1"));
-                result.put("  - " + map.get("key") + ":", map.get("value2"));
+                result.put("  - " + map.get("key") + ":", map.get("value1"));
+                result.put("  + " + map.get("key") + ":", map.get("value2"));
             } else if (map.get("type").equals("notChanged")) {
                 result.put("   " + map.get("key") + ":", map.get("value"));
-            }
+            }*/
         }
-        ObjectMapper mapper = new ObjectMapper();
-        //System.out.println(mapper.writeValueAsString(result));
-        return mapper.writeValueAsString(result);
+        System.out.println(result);
+        return result;
     }
 }
 
