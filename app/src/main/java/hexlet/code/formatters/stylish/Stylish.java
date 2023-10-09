@@ -25,6 +25,8 @@ public class Stylish implements Represent {
                 case "notChanged":
                     result = result + "    " + map.get("key") + ": " + map.get("value") + "\n";
                     break;
+                default:
+                    result = "";
             }
         }
         result = result + "}";

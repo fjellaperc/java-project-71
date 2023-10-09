@@ -18,16 +18,14 @@ public class Parser {
         }
         String formatFile = filepath.substring(filepath.lastIndexOf(".") + 1);
         switch (formatFile) {
-            case "json": {
+            case "json":
                 ObjectMapper mapperJSON = new ObjectMapper();
                 return mapperJSON.readValue(inputFile, new TypeReference<>() {
                 });
-            }
-            case ("yaml"), ("yml"): {
+            case ("yaml"), ("yml"):
                 YAMLMapper mapperYAML = new YAMLMapper();
                 return mapperYAML.readValue(inputFile, new TypeReference<>() {
                 });
-            }
             default: throw new Exception("Incorrect format, needed JSON or YAML");
         }
     }

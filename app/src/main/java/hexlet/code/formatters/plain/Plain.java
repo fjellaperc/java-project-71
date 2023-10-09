@@ -42,6 +42,8 @@ public class Plain implements Represent {
                     result = result + "Property '" + map.get("key") + "' was updated. From "
                         + checkPrimitive(map.get("value1")) + " to " + checkPrimitive(map.get("value2")) + "\n";
                     break;
+                default:
+                    result = "";
             }
         }
         result = result.substring(0, result.length() - 1);
