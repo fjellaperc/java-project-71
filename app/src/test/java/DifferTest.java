@@ -46,13 +46,15 @@ class DifferTest {
     @Test
     public void isStylishJSONTest() throws Exception {
         String expected2 = getDataFromFile(stylishTest);
-        String actual2 = Differ.generate(dataStructureJson1.getAbsolutePath(), dataStructureJson2.getAbsolutePath(), stylish);
+        String actual2 = Differ.generate(dataStructureJson1.getAbsolutePath(), dataStructureJson2.getAbsolutePath(),
+                stylish);
         Assertions.assertEquals(expected2, actual2);
     }
     @Test
     public void isPlainJSONTest() throws Exception {
         String expected2 = getDataFromFile(plainTest);
-        String actual2 = Differ.generate(dataStructureJson1.getAbsolutePath(), dataStructureJson2.getAbsolutePath(), plain);
+        String actual2 = Differ.generate(dataStructureJson1.getAbsolutePath(), dataStructureJson2.getAbsolutePath(),
+                plain);
         Assertions.assertEquals(expected2, actual2);
     }
 
